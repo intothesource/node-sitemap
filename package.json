@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:intothesource/node-sitemap.git",
   "author": "Felix Dulfer <fdulfer@intothesource.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
