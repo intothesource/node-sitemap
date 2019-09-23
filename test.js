@@ -4,10 +4,10 @@ import createUrl from './lib/util/create-url';
 import Sitemap from '.';
 
 // ---
-// lib/castArray
+// lib/util/cast-array
 // ---
 
-test('#castArray() - with some value', t => {
+test('lib/util/cast-array - with some value', t => {
 	t.deepEqual(castArray(1), [1]);
 	t.deepEqual(castArray('2'), ['2']);
 	t.deepEqual(castArray(1 + '2'), ['12']);
@@ -15,38 +15,38 @@ test('#castArray() - with some value', t => {
 	t.deepEqual(castArray({}), [{}]);
 });
 
-test('#castArray() - with empty array', t => {
+test('lib/util/cast-array - with empty array', t => {
 	t.deepEqual(castArray([]), []);
 });
 
-test('#castArray() - with non-empty array', t => {
+test('lib/util/cast-array - with non-empty array', t => {
 	t.deepEqual(castArray([1, '2', [3]]), [1, '2', [3]]);
 });
 
-test('#castArray() - no args should cast array with undefined', t => {
+test('lib/util/cast-array - no args should cast array with undefined', t => {
 	t.deepEqual(castArray(), [undefined]);
 });
 
 // ---
-// lib/createUrl
+// lib/util/create-url
 // ---
 
-test('#createUrl() - string', t => {
+test('lib/util/create-url - string', t => {
 	const url = 'foo';
 	t.is(createUrl(url), 'foo');
 });
 
-test('#createUrl() - string with base', t => {
+test('lib/util/create-url - string with base', t => {
 	const url = 'foo';
 	t.is(createUrl(url, 'http://example.com'), 'http://example.com/foo');
 });
 
-test('#createUrl() - as array of strings', t => {
+test('lib/util/create-url - as array of strings', t => {
 	const url = ['foo', 'bar'];
 	t.is(createUrl(url), 'foo/bar');
 });
 
-test('#createUrl() - as array of strings with base', t => {
+test('lib/util/create-url - as array of strings with base', t => {
 	const url = ['foo', 'bar'];
 	t.is(createUrl(url, 'http://example.com'), 'http://example.com/foo/bar');
 });
