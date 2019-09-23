@@ -69,7 +69,6 @@ class Sitemap {
 					[])
 			]
 		}];
-		console.dir({xmlObj});
 		return xml(xmlObj, {indent, declaration: {encoding: 'UTF-8'}});
 	}
 }
