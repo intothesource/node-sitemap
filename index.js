@@ -1,16 +1,12 @@
 'use strict';
 
-const join = require('url-join');
 const xml = require('xml');
+const createUrl = require('./lib/util/create-url');
 
 class Sitemap {
 	constructor(urls = [], {base = ''} = {}) {
 		this.urls = urls;
 		this.base = base;
-	}
-
-	createUrl(str, base = this.base || '') {
-		return str ? join(base, str) : base;
 	}
 
 	generate(urls = this.urls || [], base = this.base || '') {
@@ -21,7 +17,7 @@ class Sitemap {
 		};
 
 		urls.forEach(({loc, lastmod, changefreq, priority}) => {
-			const obj = {loc: this.createUrl(loc, base)};
+			const obj = {loc: createUrl(loc, base)};
 
 			if (lastmod) {
 				Object.assign(obj, {lastmod});
