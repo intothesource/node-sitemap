@@ -41,7 +41,7 @@ test('#toObject() - with urls', t => {
 });
 
 test('#toObject() - with urls and base', t => {
-	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar'}];
+	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar', priority: 1.0}];
 	const options = {base: 'https://example.com'};
 	const sitemap = new Sitemap(urls, options);
 	sitemap.base = 'https://example.com';
@@ -51,7 +51,7 @@ test('#toObject() - with urls and base', t => {
 				{loc: 'https://example.com'},
 				{loc: 'https://example.com/'},
 				{loc: 'https://example.com/foo'},
-				{loc: 'https://example.com/bar'}
+				{loc: 'https://example.com/bar', priority: 1.0}
 			]
 		}
 	});
@@ -78,13 +78,18 @@ test('#toJson() - with urls', t => {
 });
 
 test('#toJson() - with urls and base', t => {
-	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar'}];
+	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar', priority: 0.5}];
 	const options = {base: 'https://example.com'};
 	const sitemap = new Sitemap(urls, options);
 	sitemap.base = 'https://example.com';
 	t.is(
 		sitemap.toJson(),
-		'{"urlset":{"url":[{"loc":"https://example.com"},{"loc":"https://example.com/"},{"loc":"https://example.com/foo"},{"loc":"https://example.com/bar"}]}}'
+		'{"urlset":{"url":[' +
+		'{"loc":"https://example.com"},' +
+		'{"loc":"https://example.com/"},' +
+		'{"loc":"https://example.com/foo"},' +
+		'{"loc":"https://example.com/bar","priority":0.5}' +
+		']}}'
 	);
 });
 
@@ -112,7 +117,7 @@ test('#toXml() - with urls', t => {
 });
 
 test('#toXml() - with urls and base', t => {
-	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar'}];
+	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar', priority: 0.5}];
 	const options = {base: 'https://example.com'};
 	const sitemap = new Sitemap(urls, options);
 	sitemap.base = 'https://example.com';
@@ -123,7 +128,7 @@ test('#toXml() - with urls and base', t => {
 		'<url><loc>https://example.com</loc></url>' +
 		'<url><loc>https://example.com/</loc></url>' +
 		'<url><loc>https://example.com/foo</loc></url>' +
-		'<url><loc>https://example.com/bar</loc></url>' +
+		'<url><loc>https://example.com/bar</loc><priority>0.5</priority></url>' +
 		'</urlset>'
 	);
 });

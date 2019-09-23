@@ -20,10 +20,22 @@ class Sitemap {
 			}
 		};
 
-		urls.forEach(({loc}) => {
-			sitemap.urlset.url.push({
-				loc: this.createUrl(loc, base)
-			});
+		urls.forEach(({loc, lastmod, changefreq, priority}) => {
+			const obj = {loc: this.createUrl(loc, base)};
+
+			if (lastmod) {
+				Object.assign(obj, {lastmod});
+			}
+
+			if (changefreq) {
+				Object.assign(obj, {changefreq});
+			}
+
+			if (priority) {
+				Object.assign(obj, {priority});
+			}
+
+			sitemap.urlset.url.push(obj);
 		});
 
 		return sitemap;
@@ -43,9 +55,21 @@ class Sitemap {
 		const xmlObj = [{
 			urlset: [
 				{_attr: {xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9'}},
-				...(url.length > 0 ? url.map(p => ({url: [{...p}]})) : [])
+				...(url.length > 0 ?
+					url.map(({loc, lastmod, changefreq, priority}) => {
+						return {
+							url: [
+								loc 		&& {loc},
+								lastmod 	&& {lastmod},
+								changefreq 	&& {changefreq},
+								priority 	&& {priority}
+							].filter(Boolean)
+						};
+					}) :
+					[])
 			]
 		}];
+		console.dir({xmlObj});
 		return xml(xmlObj, {indent, declaration: {encoding: 'UTF-8'}});
 	}
 }
