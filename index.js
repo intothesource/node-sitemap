@@ -37,7 +37,7 @@ class Sitemap {
 		return JSON.stringify(this.toObject());
 	}
 
-	toXml() {
+	toXml({indent = false} = {}) {
 		const {urlset} = this.toObject();
 		const {url} = urlset;
 		const xmlObj = [{
@@ -46,7 +46,7 @@ class Sitemap {
 				...(url.length > 0 ? url.map(p => ({url: [{...p}]})) : [])
 			]
 		}];
-		return xml(xmlObj, {declaration: {encoding: 'UTF-8'}});
+		return xml(xmlObj, {indent, declaration: {encoding: 'UTF-8'}});
 	}
 }
 

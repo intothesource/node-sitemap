@@ -96,7 +96,8 @@ test('#toXml() - without urls or options', t => {
 	const sitemap = new Sitemap();
 	t.is(
 		sitemap.toXml(),
-		'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>'
+		'<?xml version="1.0" encoding="UTF-8"?>' +
+		'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>'
 	);
 });
 
@@ -104,7 +105,9 @@ test('#toXml() - with urls', t => {
 	const sitemap = new Sitemap([{loc: 'foo'}, {loc: 'bar'}]);
 	t.is(
 		sitemap.toXml(),
-		'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>foo</loc></url><url><loc>bar</loc></url></urlset>'
+		'<?xml version="1.0" encoding="UTF-8"?>' +
+		'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+		'<url><loc>foo</loc></url><url><loc>bar</loc></url></urlset>'
 	);
 });
 
@@ -115,6 +118,12 @@ test('#toXml() - with urls and base', t => {
 	sitemap.base = 'https://example.com';
 	t.is(
 		sitemap.toXml(),
-		'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://example.com</loc></url><url><loc>https://example.com/</loc></url><url><loc>https://example.com/foo</loc></url><url><loc>https://example.com/bar</loc></url></urlset>'
+		'<?xml version="1.0" encoding="UTF-8"?>' +
+		'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+		'<url><loc>https://example.com</loc></url>' +
+		'<url><loc>https://example.com/</loc></url>' +
+		'<url><loc>https://example.com/foo</loc></url>' +
+		'<url><loc>https://example.com/bar</loc></url>' +
+		'</urlset>'
 	);
 });
