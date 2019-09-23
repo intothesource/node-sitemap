@@ -18,9 +18,6 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"np": {
-		"yarn": false
-	},
 	"devDependencies": {
 		"@types/node": "^12.7.5",
 		"ava": "^2.4.0",
