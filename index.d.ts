@@ -20,7 +20,7 @@ declare namespace Sitemap {
 }
 
 declare class Sitemap {
-	generate(): Sitemap;
+	generate(): Sitemap.Sitemap;
 }
 
 export = Sitemap;
