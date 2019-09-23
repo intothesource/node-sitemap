@@ -1,6 +1,6 @@
 {
   "name": "@intothesource/sitemap",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "git@github.com:intothesource/node-sitemap.git",
   "author": "Felix Dulfer <fdulfer@intothesource.com>",
