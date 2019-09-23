@@ -2,6 +2,10 @@
 
 declare namespace Sitemap {
 
+	class ConstructorOptions {
+		base?: string
+	}
+
 	class Sitemap {
 		urlset: UrlSet;
 	}
@@ -20,6 +24,8 @@ declare namespace Sitemap {
 }
 
 declare class Sitemap {
+	constructor(options?: Sitemap.ConstructorOptions)
+	createUrl(input: string, base?: Sitemap.ConstructorOptions['base']): string;
 	generate(): Sitemap.Sitemap;
 }
 
