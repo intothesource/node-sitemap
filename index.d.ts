@@ -33,7 +33,7 @@ declare class Sitemap {
 	generate(): Sitemap.Sitemap;
 	toObject(): Sitemap.Sitemap;
 	toJson(): string;
-	toXml(): string;
+	toXml(options?:{indent:boolean}): string;
 }
 
 export = Sitemap;
