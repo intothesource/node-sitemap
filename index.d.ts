@@ -33,14 +33,13 @@ declare namespace Sitemap {
 }
 
 declare class Sitemap {
-	base:string;
-	urls:any[];
+	readonly base:string;
+	readonly urls:any[];
 	constructor(urls?:any[], options?: Sitemap.ConstructorOptions)
-	createUrl(input: string, base?: Sitemap.ConstructorOptions['base']): string;
-	generate(): Sitemap.Sitemap;
-	toObject(): Sitemap.Sitemap;
-	toJson(options?:{indent:boolean}): string;
-	toXml(options?:{indent:boolean}): string;
+	private generate(): Sitemap.Sitemap;
+	public toObject(): Sitemap.Sitemap;
+	public toJson(options?:{indent:boolean}): string;
+	public toXml(options?:{indent:boolean}): string;
 }
 
 export = Sitemap;
