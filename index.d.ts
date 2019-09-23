@@ -20,7 +20,14 @@ declare namespace Sitemap {
 	class Url {
 		loc?: string;
 		lastmod?: string;
-		changefreq?: 'daily' | 'weekly' | 'monthly';
+		changefreq?:
+			'always'|
+			'hourly'|
+			'daily'|
+			'weekly'|
+			'monthly'|
+			'yearly'|
+			'never';
 		priority?: number;
 	}
 }
