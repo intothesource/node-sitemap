@@ -11,7 +11,9 @@ declare namespace Sitemap {
 	}
 
 	class UrlSet {
-		public _xmlns?: 'http://www.sitemaps.org/schemas/sitemap/0.9';
+		_attr?: {
+			xmlns?: 'http://www.sitemaps.org/schemas/sitemap/0.9';
+		};
 		url: Url[];
 	}
 
@@ -24,9 +26,14 @@ declare namespace Sitemap {
 }
 
 declare class Sitemap {
-	constructor(options?: Sitemap.ConstructorOptions)
+	base:string;
+	urls:any[];
+	constructor(urls?:any[], options?: Sitemap.ConstructorOptions)
 	createUrl(input: string, base?: Sitemap.ConstructorOptions['base']): string;
 	generate(): Sitemap.Sitemap;
+	toObject(): Sitemap.Sitemap;
+	toJson(): string;
+	toXml(): string;
 }
 
 export = Sitemap;

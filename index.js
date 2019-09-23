@@ -1,31 +1,53 @@
 'use strict';
 
 const join = require('url-join');
+const xml = require('xml');
 
 class Sitemap {
-	constructor({base = ''} = {}) {
+	constructor(urls = [], {base = ''} = {}) {
+		this.urls = urls;
 		this.base = base;
 	}
 
-	createUrl(str, base = this.base) {
+	createUrl(str, base = this.base || '') {
 		return str ? join(base, str) : base;
 	}
 
-	generate(urls = []) {
+	generate(urls = this.urls || [], base = this.base || '') {
 		const sitemap = {
 			urlset: {
-				_xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9',
 				url: []
 			}
 		};
 
 		urls.forEach(({loc}) => {
 			sitemap.urlset.url.push({
-				loc: this.createUrl(loc)
+				loc: this.createUrl(loc, base)
 			});
 		});
 
 		return sitemap;
+	}
+
+	toObject() {
+		return this.generate(this.urls, this.base);
+	}
+
+	toJson() {
+		const obj = this.toObject();
+		return JSON.stringify(obj);
+	}
+
+	toXml() {
+		const {urlset} = this.toObject();
+		const {url} = urlset;
+		const xmlObj = [{
+			urlset: [
+				{_attr: {xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9'}},
+				...(url.length > 0 ? url.map(p => ({url: [{...p}]})) : [])
+			]
+		}];
+		return xml(xmlObj, {declaration: {encoding: 'UTF-8'}});
 	}
 }
 
