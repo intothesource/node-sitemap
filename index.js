@@ -45,8 +45,8 @@ class Sitemap {
 		return this.generate(this.urls, this.base);
 	}
 
-	toJson() {
-		return JSON.stringify(this.toObject());
+	toJson({indent = false} = {}) {
+		return JSON.stringify(this.toObject(), null, indent ? 4 : 0);
 	}
 
 	toXml({indent = false} = {}) {

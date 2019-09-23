@@ -32,7 +32,7 @@ declare class Sitemap {
 	createUrl(input: string, base?: Sitemap.ConstructorOptions['base']): string;
 	generate(): Sitemap.Sitemap;
 	toObject(): Sitemap.Sitemap;
-	toJson(): string;
+	toJson(options?:{indent:boolean}): string;
 	toXml(options?:{indent:boolean}): string;
 }
 
