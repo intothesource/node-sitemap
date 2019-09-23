@@ -1,5 +1,5 @@
 {
-  "name": "@intothesource/node-sitemap",
+  "name": "@intothesource/sitemap",
   "version": "0.0.1",
   "main": "index.js",
   "repository": "git@github.com:intothesource/node-sitemap.git",
