@@ -34,8 +34,7 @@ class Sitemap {
 	}
 
 	toJson() {
-		const obj = this.toObject();
-		return JSON.stringify(obj);
+		return JSON.stringify(this.toObject());
 	}
 
 	toXml() {
