@@ -1,0 +1,2 @@
+# node-sitemap
+Generates sitemaps
