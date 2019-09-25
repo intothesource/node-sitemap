@@ -95,6 +95,16 @@ test('Sitemap#toString() - with urls', t => {
 	);
 });
 
+test('Sitemap#toString() - with urls as array', t => {
+	const sitemap = new Sitemap([{loc: ['foo', '/']}, {loc: ['foo', 'bar', '/']}]);
+	t.is(
+		sitemap.toString(),
+		'<?xml version="1.0" encoding="UTF-8"?>' +
+		'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+		'<url><loc>foo/</loc></url><url><loc>foo/bar/</loc></url></urlset>'
+	);
+});
+
 test('Sitemap#toString() - with urls and base', t => {
 	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar', priority: 0.5}];
 	const options = {base: 'https://example.com'};
@@ -152,6 +162,16 @@ test('SitemapIndex#toString() - with sitemaps', t => {
 		'<?xml version="1.0" encoding="UTF-8"?>' +
 		'<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
 		'<sitemap><loc>foo</loc></sitemap><sitemap><loc>bar</loc></sitemap></sitemapindex>'
+	);
+});
+
+test('SitemapIndex#toString() - with sitemap urls as array', t => {
+	const sitemap = new SitemapIndex([{loc: ['foo', '/']}, {loc: ['foo', 'bar', '/']}]);
+	t.is(
+		sitemap.toString(),
+		'<?xml version="1.0" encoding="UTF-8"?>' +
+		'<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+		'<sitemap><loc>foo/</loc></sitemap><sitemap><loc>foo/bar/</loc></sitemap></sitemapindex>'
 	);
 });
 

@@ -3,12 +3,18 @@
 const xml = require('xml');
 const createUrl = require('./lib/util/create-url');
 
-const isString = str =>
-	typeof str === 'string';
+const isString = val =>
+	typeof val === 'string';
+
+const isArray = val =>
+	Array.isArray(val);
+
+const isStringOrArray = val =>
+	isString(val) || isArray(val);
 
 const withUrl = key =>
 	base =>
-		loc => isString(loc) && {[key]: createUrl(loc, base)};
+		loc => isStringOrArray(loc) && {[key]: createUrl(loc, base)};
 
 const withString = key =>
 	str => str && {[key]: str};
