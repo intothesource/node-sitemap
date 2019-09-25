@@ -6,19 +6,15 @@ declare namespace Sitemap {
 		base?: string
 	}
 
-	class Sitemap {
-		urlset: UrlSet;
+	class SitemapModel {
+		loc?: string|string[];
+		lastmod?: string;
 	}
 
-	class UrlSet {
-		_attr?: {
-			xmlns?: 'http://www.sitemaps.org/schemas/sitemap/0.9';
-		};
-		url: Url[];
-	}
+	type Sitemaps = SitemapModel[]
 
-	class Url {
-		loc?: string;
+	class UrlModel {
+		loc?: string|string[];
 		lastmod?: string;
 		changefreq?:
 			'always'|
@@ -30,16 +26,23 @@ declare namespace Sitemap {
 			'never';
 		priority?: number;
 	}
+
+	type Urls = UrlModel[]
+
+	class Sitemap {
+		readonly base:string;
+		readonly urls:Sitemap.Urls;
+		constructor(urls?:Sitemap.Urls, options?: Sitemap.ConstructorOptions)
+		public toString(options?:{indent:boolean}): string;
+	}
+
+	class SitemapIndex {
+		readonly base:string;
+		readonly sitemaps:Sitemaps;
+		constructor(sitemaps?:Sitemaps, options?: Sitemap.ConstructorOptions)
+		public toString(options?:{indent:boolean}): string;
+	}
 }
 
-declare class Sitemap {
-	readonly base:string;
-	readonly urls:any[];
-	constructor(urls?:any[], options?: Sitemap.ConstructorOptions)
-	private generate(): Sitemap.Sitemap;
-	public toObject(): Sitemap.Sitemap;
-	public toJson(options?:{indent:boolean}): string;
-	public toXml(options?:{indent:boolean}): string;
-}
 
 export = Sitemap;

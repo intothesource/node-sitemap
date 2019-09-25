@@ -116,19 +116,19 @@ test('Sitemap#toString() - with urls and base', t => {
 // ---
 
 test('SitemapIndex#constructor() - without urls or options', t => {
-	t.deepEqual(new SitemapIndex().urls, []);
+	t.deepEqual(new SitemapIndex().sitemaps, []);
 	t.deepEqual(new SitemapIndex().base, '');
 });
 
-test('SitemapIndex#constructor() - with urls', t => {
-	t.deepEqual(new SitemapIndex([{loc: 'foo'}]).urls, [{loc: 'foo'}]);
+test('SitemapIndex#constructor() - with sitemaps', t => {
+	t.deepEqual(new SitemapIndex([{loc: 'foo'}]).sitemaps, [{loc: 'foo'}]);
 });
 
-test('SitemapIndex#constructor() - with urls and base option', t => {
-	const urls = [{loc: 'foo'}];
+test('SitemapIndex#constructor() - with sitemaps and base option', t => {
+	const sitemaps = [{loc: 'foo'}];
 	const options = {base: 'https://example.com'};
-	const sitemap = new SitemapIndex(urls, options);
-	t.deepEqual(sitemap.urls, [{loc: 'foo'}]);
+	const sitemap = new SitemapIndex(sitemaps, options);
+	t.deepEqual(sitemap.sitemaps, [{loc: 'foo'}]);
 	t.is(sitemap.base, 'https://example.com');
 });
 
@@ -136,7 +136,7 @@ test('SitemapIndex#constructor() - with urls and base option', t => {
 // toString
 // ---
 
-test('SitemapIndex#toString() - without urls or options', t => {
+test('SitemapIndex#toString() - without sitemaps or options', t => {
 	const sitemap = new SitemapIndex();
 	t.is(
 		sitemap.toString(),
@@ -145,7 +145,7 @@ test('SitemapIndex#toString() - without urls or options', t => {
 	);
 });
 
-test('SitemapIndex#toString() - with urls', t => {
+test('SitemapIndex#toString() - with sitemaps', t => {
 	const sitemap = new SitemapIndex([{loc: 'foo'}, {loc: 'bar'}]);
 	t.is(
 		sitemap.toString(),
@@ -155,10 +155,10 @@ test('SitemapIndex#toString() - with urls', t => {
 	);
 });
 
-test('SitemapIndex#toString() - with urls and base', t => {
-	const urls = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar', lastmod: '1985-10-25'}];
+test('SitemapIndex#toString() - with sitemaps and base', t => {
+	const sitemaps = [{loc: ''}, {loc: '/'}, {loc: 'foo'}, {loc: 'bar', lastmod: '1985-10-25'}];
 	const options = {base: 'https://example.com'};
-	const sitemap = new SitemapIndex(urls, options);
+	const sitemap = new SitemapIndex(sitemaps, options);
 	t.is(
 		sitemap.toString(),
 		'<?xml version="1.0" encoding="UTF-8"?>' +

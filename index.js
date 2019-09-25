@@ -46,15 +46,15 @@ class Sitemap {
 }
 
 class SitemapIndex {
-	constructor(urls, options = {}) {
-		this.urls = urls || [];
+	constructor(sitemaps, options = {}) {
+		this.sitemaps = sitemaps || [];
 		this.base = options.base || '';
 
 		const model = [{
 			sitemapindex: [
 				{_attr: {xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9'}},
-				...(this.urls.length > 0) ?
-					this.urls.map(({loc, lastmod}) => ({
+				...(this.sitemaps.length > 0) ?
+					this.sitemaps.map(({loc, lastmod}) => ({
 						sitemap: [
 							withUrl('loc')(this.base)(loc),
 							withString('lastmod')(lastmod)
